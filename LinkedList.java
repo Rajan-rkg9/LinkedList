@@ -35,6 +35,12 @@ public class LinkedList<T> {
 			this.tail = this.tail.getNext();
 		}
 	}
+	public void insertAfter(INode<T> newNode1 , INode<T> newNode2)
+	{
+		INode<T> current = newNode1.getNext();
+		newNode1.setNext(newNode2);
+		newNode2.setNext(current);
+	}
 	public  void display()
 	{
 		INode<T> current = this.head;
@@ -52,8 +58,8 @@ public class LinkedList<T> {
 		Node<Integer> newNode2 = new Node<>(30);
 		Node<Integer> newNode3 = new Node<>(70);
 		list.append(newNode1);
-		list.append(newNode2);
 		list.append(newNode3);
+		list.insertAfter(newNode1, newNode2);
 		list.display();
 	}
 }
