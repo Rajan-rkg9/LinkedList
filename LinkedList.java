@@ -87,6 +87,29 @@ public class LinkedList<T> {
 			}							
 		}
 	}
+	public void remove(T input) {
+		INode<T> current = this.head;
+		if (current == this.tail && current != null) {
+			if (current.getData() == input) 
+			{
+				this.head = null;
+				this.tail = null;
+			}
+		} 
+		else if (current != null) {
+			while (current != this.tail && !(current.getNext().getData() == input)) {
+				current = current.getNext();
+			}
+			if (current != this.tail) {
+				INode<T> deletedElement = current.getNext();
+				current.setNext(deletedElement.getNext());
+				deletedElement.setNext(null);
+				if (deletedElement == this.tail) {
+					this.tail = current;
+				}
+			}
+		}
+	}
 	public  void display()
 	{
 		INode<T> current = this.head;
@@ -105,8 +128,9 @@ public class LinkedList<T> {
 		Node<Integer> newNode3 = new Node<>(70);
 		list.append(newNode1);
 		list.append(newNode3);
-		list.insertAfterAnElement(56, newNode2);
+		list.insertAfter(newNode1, newNode2);
 		list.display();
+		list.remove(56);
 		
 	}
 }
