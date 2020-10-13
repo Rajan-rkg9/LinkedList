@@ -47,6 +47,18 @@ public class LinkedList<T> {
 		this.head = current.getNext();
 		return current;
 	}
+	public INode<T> popLastElement()
+	{
+		INode<T> prev = null;
+		INode<T> current = this.head;
+		while(current.getNext() != null)
+		{
+			prev = current;
+			current = current.getNext();
+		}
+		prev.setNext(current.getNext());
+		return current;
+	}
 	public  void display()
 	{
 		INode<T> current = this.head;
@@ -68,8 +80,7 @@ public class LinkedList<T> {
 		list.insertAfter(newNode1, newNode2);
 		System.out.println("Original List:");
 		list.display();
-		System.out.println();
-		System.out.println("Deleted element :" + list.popFirstElement().getData());
+		System.out.println("\nDeleted last element :" + list.popLastElement().getData());
 		System.out.println("Modified List after deleting:");
 		list.display();	
 	}
