@@ -70,6 +70,23 @@ public class LinkedList<T> {
 		}
 		return false;
 	}
+	public void insertAfterAnElement(T input , INode<T> newNode)
+	{
+		INode<T> current = this.head;
+		while(current != null)
+		{
+			if(current.getData() == input)
+				break;
+			else
+			{
+				INode<T> temp = current.getNext();
+				current.setNext(newNode);
+				current.getNext().setNext(temp);
+				if(current == this.tail)
+					this.tail = newNode;
+			}							
+		}
+	}
 	public  void display()
 	{
 		INode<T> current = this.head;
@@ -88,12 +105,8 @@ public class LinkedList<T> {
 		Node<Integer> newNode3 = new Node<>(70);
 		list.append(newNode1);
 		list.append(newNode3);
-		list.insertAfter(newNode1, newNode2);
-		System.out.println("Original List:");
+		list.insertAfterAnElement(56, newNode2);
 		list.display();
-		System.out.println("\nDeleted last element :" + list.popLastElement().getData());
-		System.out.println("Modified List after deleting:");
-		list.display();	
-		System.out.println("\nSearch element is found? " + list.searchElement(56));
+		
 	}
 }
