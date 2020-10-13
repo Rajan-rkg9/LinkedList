@@ -59,6 +59,17 @@ public class LinkedList<T> {
 		prev.setNext(current.getNext());
 		return current;
 	}
+	public boolean searchElement(T key)
+	{
+		INode<T> current = this.head;
+		while(current != null)
+		{
+			if(current.getData() == key)
+				return true;
+			current = current.getNext();
+		}
+		return false;
+	}
 	public  void display()
 	{
 		INode<T> current = this.head;
@@ -83,5 +94,6 @@ public class LinkedList<T> {
 		System.out.println("\nDeleted last element :" + list.popLastElement().getData());
 		System.out.println("Modified List after deleting:");
 		list.display();	
+		System.out.println("\nSearch element is found? " + list.searchElement(56));
 	}
 }
