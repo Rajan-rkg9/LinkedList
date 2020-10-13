@@ -3,7 +3,6 @@ package com.DataStructure.LinkedList;
 public class LinkedList<T> {
 	INode<T> head;
 	INode<T> tail;
-	int length = 0;
 	
 	public LinkedList() {
 		super();
@@ -23,7 +22,18 @@ public class LinkedList<T> {
 			 head = newNode;
 			 head.setNext(current);
 		}
-		length++;
+	}
+	public void append(INode<T> newNode)
+	{
+		if(this.head == null)
+			this.head = newNode;
+		if(this.tail == null)
+			this.tail = newNode;
+		else
+		{
+			this.tail.setNext(newNode);
+			this.tail = this.tail.getNext();
+		}
 	}
 	public  void display()
 	{
@@ -38,12 +48,12 @@ public class LinkedList<T> {
 	}
 	public static void main(String[] args) {
 		LinkedList<Integer> list = new LinkedList<>();
-		Node<Integer> newNode1 = new Node<>(70);
+		Node<Integer> newNode1 = new Node<>(56);
 		Node<Integer> newNode2 = new Node<>(30);
-		Node<Integer> newNode3 = new Node<>(56);
-		list.insert(newNode1);
-		list.insert(newNode2);
-		list.insert(newNode3);
+		Node<Integer> newNode3 = new Node<>(70);
+		list.append(newNode1);
+		list.append(newNode2);
+		list.append(newNode3);
 		list.display();
 	}
 }
