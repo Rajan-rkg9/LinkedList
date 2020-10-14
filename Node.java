@@ -1,6 +1,6 @@
 package com.DataStructure.LinkedList;
 
-public class Node<T>  implements INode<T> {
+public class Node<T extends Comparable<T>>  implements INode<T> {
 	T data;
 	Node<T> next;
 	

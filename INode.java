@@ -1,6 +1,6 @@
 package com.DataStructure.LinkedList;
 
-public interface INode<T> {
+public interface INode<T extends Comparable<T>> {
 	T getData();
 	void setData(T data);
 	

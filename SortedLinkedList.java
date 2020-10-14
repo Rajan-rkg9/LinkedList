@@ -1,28 +1,53 @@
 package com.DataStructure.LinkedList;
 
-public class LinkedList<T> {
+public class SortedLinkedList<T extends Comparable<T>> {
 	INode<T> head;
 	INode<T> tail;
-	
-	public LinkedList() {
+	int size;
+	public SortedLinkedList() {
 		super();
 		this.head = null;
 		this.tail = null;
+		this.size = 0;
 	}
-	
-	public void insert(INode<T> newNode)
-	{
-		if(this.head == null)
+	public int size() {
+		return size;
+	}
+	public void insertSortedList(INode<T> newNode) {
+		if (this.head == null)
 			this.head = newNode;
-		if(this.tail == null)
+		if (this.tail == null) {
 			this.tail = newNode;
-		else
+			size++;
+		}
+		else if(this.head==this.tail) 
 		{
-			 INode<T> current = head;
-			 head = newNode;
-			 head.setNext(current);
+			if(newNode.getData().compareTo(this.head.getData())>0) {
+				append(newNode);
+			}else
+			{
+				INode<T> current = this.head;
+				this.head = newNode;
+				this.head.setNext(current);
+				size++;
+			}
+		}
+		else if(newNode.getData().compareTo(this.head.getData())<0) {
+			INode<T> current = this.head;
+			this.head = newNode;
+			this.head.setNext(current);
+			size++;
+		}
+		else {
+			INode<T> current = this.head;
+			while(current != this.tail && newNode.getData().compareTo(current.getNext().getData())>0) 
+			{
+				current=current.getNext();
+			}
+			insertAfter(current, newNode);
 		}
 	}
+
 	public void append(INode<T> newNode)
 	{
 		if(this.head == null)
@@ -122,15 +147,17 @@ public class LinkedList<T> {
 		}
 	}
 	public static void main(String[] args) {
-		LinkedList<Integer> list = new LinkedList<>();
+		SortedLinkedList<Integer> list = new SortedLinkedList<>();
 		Node<Integer> newNode1 = new Node<>(56);
 		Node<Integer> newNode2 = new Node<>(30);
 		Node<Integer> newNode3 = new Node<>(70);
-		list.append(newNode1);
-		list.append(newNode3);
-		list.insertAfter(newNode1, newNode2);
+		Node<Integer> newNode4 = new Node<>(40);
+		list.insertSortedList(newNode1);
+		list.insertSortedList(newNode2);
+		list.insertSortedList(newNode3);
+		list.insertSortedList(newNode4);
 		list.display();
-		list.remove(56);
 		
 	}
+	
 }
